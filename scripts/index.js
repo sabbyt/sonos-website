@@ -9,12 +9,14 @@ var controls = {
 $('#play').click(function(event){
   event.preventDefault();
   $.get(controls.play);
+  $('#paused').hide();
   console.log('play');
 });
 
 $('#pause').click(function(event){
   event.preventDefault();
   $.get(controls.pause);
+  $('#paused').show();
   console.log('pause');
 });
 
