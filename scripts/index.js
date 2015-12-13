@@ -3,7 +3,8 @@ var controls = {
   pause: "http://danielxli.ddns.net:5005/pause",
   playNext: "http://danielxli.ddns.net:5005/next",
   volumeUp: "http://danielxli.ddns.net:5005/volume/+1",
-  volumeDown: "http://danielxli.ddns.net:5005/volume/-1"
+  volumeDown: "http://danielxli.ddns.net:5005/volume/-1",
+  zones: "http://danielxli.ddns.net:5005/zones"
 }
 
 $('#play').click(function(event){
@@ -48,3 +49,14 @@ $('.hover').on('mouseover', function(event){
     });
   });
 });
+
+// var info = $.getJSON("http://danielxli.ddns.net:5005/zones");
+
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function() {
+  if(xhr.readystate == 4) {
+    var stuff = JSON.parse(xhr.responseText);
+  }
+};
+xhr.open('GET', 'http://danielxli.ddns.net:5005/zones');
+xhr.send();
