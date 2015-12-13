@@ -51,12 +51,40 @@ $('.hover').on('mouseover', function(event){
 });
 
 // var info = $.getJSON("http://danielxli.ddns.net:5005/zones");
+//
+// var xhr = new XMLHttpRequest();
+// var url = "http://danielxli.ddns.net:5005/zones";
+//
+// xhr.onreadystatechange = function() {
+//   if(xhr.readyState == 4 && xhr.status == 200) {
+//     var stuff = JSON.parse(xhr.responseText);
+//     console.log(stuff);
+//   }
+// };
+// xhr.open('GET', 'http://danielxli.ddns.net:5005/zones', true);
+// xhr.send();
 
-var xhr = new XMLHttpRequest();
-xhr.onreadystatechange = function() {
-  if(xhr.readystate == 4) {
-    var stuff = JSON.parse(xhr.responseText);
-  }
-};
-xhr.open('GET', 'http://danielxli.ddns.net:5005/zones');
-xhr.send();
+function CallURL(){
+       $.ajax({
+    url: 'http://danielxli.ddns.net:5005/zones',
+    type: "GET",
+    dataType: "jsonp",
+    async:false,
+     success: function (msg) {
+         JsonpCallback(msg);
+         console.log('hello');
+    },
+    error: function () {
+        console.log('goodbye');
+    }
+});
+}
+
+function JsonpCallback(json)
+{
+ document.getElementById('status').innerHtml = json.result;
+ console.log(json.result);
+}
+
+CallURL();
+JsonpCallback();
