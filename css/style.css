@@ -1,0 +1,18 @@
+section {
+  margin-left: 1em;
+  margin-right: 1em;
+  width:100%;
+}
+
+.tileControl {
+  min-width: 30%;
+  display: inline-block;
+  background-color: #00A0B1;
+  height: 5em;
+  text-align: center;
+  color: white;
+  font-size: 2em;
+  margin: 0.2em;
+  border-radius: 25px;
+  position: relative;
+}
