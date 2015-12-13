@@ -4,7 +4,6 @@ var controls = {
   playNext: "http://danielxli.ddns.net:5005/next",
   volumeUp: "http://danielxli.ddns.net:5005/volume/+1",
   volumeDown: "http://danielxli.ddns.net:5005/volume/-1",
-  zones: "http://danielxli.ddns.net:5005/zones"
 }
 
 $('#play').click(function(event){
@@ -50,41 +49,18 @@ $('.hover').on('mouseover', function(event){
   });
 });
 
-// var info = $.getJSON("http://danielxli.ddns.net:5005/zones");
-//
-// var xhr = new XMLHttpRequest();
-// var url = "http://danielxli.ddns.net:5005/zones";
-//
-// xhr.onreadystatechange = function() {
-//   if(xhr.readyState == 4 && xhr.status == 200) {
-//     var stuff = JSON.parse(xhr.responseText);
-//     console.log(stuff);
-//   }
-// };
-// xhr.open('GET', 'http://danielxli.ddns.net:5005/zones', true);
-// xhr.send();
-
-function CallURL(){
-       $.ajax({
-    url: 'http://danielxli.ddns.net:5005/zones',
-    type: "GET",
-    dataType: "jsonp",
-    async:false,
-     success: function (msg) {
-         JsonpCallback(msg);
-         console.log('hello');
-    },
-    error: function () {
-        console.log('goodbye');
-    }
+var nowPlaying;
+var consoleInfo = function() {
+$.getJSON('http://whateverorigin.org/get?url=' + encodeURIComponent('http://danielxli.ddns.net:5005/state') + '&callback=?', function(data){
+  var nowPlayingString = data.contents;
+  nowPlaying = JSON.parse(nowPlayingString);
+}).done(function(){
+  $('#status').html(nowPlaying.currentTrack.title + " by " + nowPlaying.currentTrack.artist);
 });
-}
+};
 
-function JsonpCallback(json)
-{
- document.getElementById('status').innerHtml = json.result;
- console.log(json.result);
+function refresh() {
+  var timeoutID = window.setTimeout(refresh, 10000);
+  consoleInfo();
+  console.log('refresh');
 }
-
-CallURL();
-JsonpCallback();
