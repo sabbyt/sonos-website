@@ -21,3 +21,17 @@ section {
   width: 100%;
   height: 5em;
 }
+
+#status {
+  font-size: 2em;
+  font-family: Garamond, serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+#paused {
+  font-size: 2em;
+  font-family: Garamond, serif;
+  font-style: italic;
+  text-align: center;
+}
