@@ -1,2 +1,5 @@
 # sonos-website
-Home Sonos Website
+
+Project by Sabrina Tee and Daniel Li.
+
+Platform to control home sonos system.
